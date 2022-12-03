@@ -1,6 +1,6 @@
-enum Part { 
-    case one
-    case two
+enum Part: Int {
+    case one = 1
+    case two = 2
 }
 
 struct Day {

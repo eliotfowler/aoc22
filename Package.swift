@@ -8,7 +8,6 @@ let package = Package(
     products: [
     ],
     dependencies: [
-        .package(url: "https://github.com/google/swift-benchmark", from: "0.1.1"),
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.2.0"),
     ],
     targets: [
@@ -18,7 +17,6 @@ let package = Package(
             name: "aoc22",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
-                .product(name: "Benchmark", package: "swift-benchmark"),
             ],
             resources: [.copy("Resources")]
         ),
