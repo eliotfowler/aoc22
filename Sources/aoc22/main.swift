@@ -1,7 +1,7 @@
 import ArgumentParser
 import Foundation
 
-private let days = [1: day1, 2: day2, 3: day3]
+private let days = [1: day1, 2: day2, 3: day3, 4: day4]
 
 private func measureInMilliseconds(_ block: () -> ()) -> Double {
   let start = DispatchTime.now()
