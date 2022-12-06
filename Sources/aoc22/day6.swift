@@ -16,16 +16,17 @@ private func part2(_ input: String) -> Int {
 }
 
 private func findMarkerLength(uniqueNum: Int, message: String) -> Int {
-  var i = 0
-  while i < message.count - uniqueNum {
-    let start = message.index(message.startIndex, offsetBy: i)
-    let end = message.index(start, offsetBy: uniqueNum)
+  var start = message.startIndex
+  var end = message.index(message.startIndex, offsetBy: uniqueNum)
+  let lastIndex = message.index(message.endIndex, offsetBy: -uniqueNum)
+  while start <= lastIndex {
     let substring = message[start ..< end]
     if Set(substring).count == uniqueNum {
-      return i + uniqueNum
+      return message.distance(from: message.startIndex, to: end)
     }
     
-    i += 1
+    start = message.index(after: start)
+    end = message.index(after: end)
   }
   
   return -1
