@@ -1,7 +1,7 @@
 import ArgumentParser
 import Foundation
 
-private let days = [1: day1, 2: day2, 3: day3, 4: day4, 5: day5]
+private let days = [1: day1, 2: day2, 3: day3, 4: day4, 5: day5, 6: day6]
 
 private func measureInMilliseconds(_ block: () -> ()) -> Double {
   let start = DispatchTime.now()
@@ -30,7 +30,7 @@ struct AOC22: ParsableCommand {
   var timing = false
   
   mutating func run() throws {
-    guard let dayPuzzle = days[day], let partToRun = Part(rawValue: part) else {
+    guard let dayPuzzle = days[day] else {
       print("That day doesn't exist")
       return
     }
@@ -49,13 +49,26 @@ struct AOC22: ParsableCommand {
 #if DEBUG
       print("Must run in release mode to get accurate timing")
       return
-#else      
-      let timeInMs = measureInMilliseconds {
-        _ = dayPuzzle.run(partToRun, input)
+#else
+      var part1Result: Any?
+      let part1TimeInMs = measureInMilliseconds {
+        part1Result = dayPuzzle.run(.one, input)
       }
-      print("Completed in \(timeInMs)ms")
+      
+      var part2Result: Any?
+      let part2TimeInMs = measureInMilliseconds {
+        part2Result = dayPuzzle.run(.two, input)
+      }
+      
+      print(
+      """
+      Part 1: \(part1Result!) (\(part1TimeInMs)ms)
+      Part 2: \(part2Result!) (\(part2TimeInMs)ms)
+      """
+      )
 #endif
     } else {
+      let partToRun = Part(rawValue: part)!
       let result = dayPuzzle.run(partToRun, input)
       print(result)
     }
