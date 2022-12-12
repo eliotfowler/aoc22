@@ -14,7 +14,6 @@ private func part1(_ input: String) -> Int {
   
   let leftIndexes = (0 ..< rows.count).flatMap { row in (0 ..< rows.count).map { column in (row, column) } }
   let lookingLeft = scanForVisibleTrees(rows: rows, indexes: leftIndexes)
-  print(lookingLeft)
   
   let rightIndexes = (0 ..< rows.count).flatMap { row in (0 ..< rows.count).reversed().map { column in (row, column) } }
   let lookingRight = scanForVisibleTrees(rows: rows, indexes: rightIndexes)
@@ -25,7 +24,7 @@ private func part1(_ input: String) -> Int {
   let downIndexes = (0 ..< rows.count).flatMap { column in (0 ..< rows.count).reversed().map { row in (row, column) } }
   let lookingDown = scanForVisibleTrees(rows: rows, indexes: downIndexes)
   
-  let numVisible = rows.enumerated()
+  return rows.enumerated()
     .flatMap { rowIndex, row in
       row.enumerated().map { columnIndex, _ in
         lookingLeft[rowIndex][columnIndex] || lookingRight[rowIndex][columnIndex] ||
@@ -33,8 +32,6 @@ private func part1(_ input: String) -> Int {
       }
     }
     .reduce(0) { $0 + ($1 ? 1 : 0)}
-  
-  return numVisible
 }
 
 private func scanForVisibleTrees(rows: [[Int]], indexes: [(Int, Int)]) -> [[Bool]] {
@@ -71,16 +68,13 @@ private func part2(_ input: String) -> Int {
   let downIndexes = (0 ..< rows.count - 1).flatMap { column in (0 ..< rows.count).reversed().map { row in (row, column) } }
   let lookingDown = scanForScenicViews(rows: rows, indexes: downIndexes)
   
-  var maxScenicScore = 0
-  for rowIndex in 0 ..< rows.count {
-    for columnIndex in 0 ..< rows[rowIndex].count {
-      let score = lookingLeft[rowIndex][columnIndex].numVisible * lookingRight[rowIndex][columnIndex].numVisible *
+  return rows.enumerated().flatMap { rowIndex, row in
+    row.enumerated().map { columnIndex, _ in
+      lookingLeft[rowIndex][columnIndex].numVisible * lookingRight[rowIndex][columnIndex].numVisible *
         lookingUp[rowIndex][columnIndex].numVisible * lookingDown[rowIndex][columnIndex].numVisible
-      maxScenicScore = max(maxScenicScore, score)
     }
   }
-  
-  return maxScenicScore
+  .reduce(0, max)
 }
 
 typealias ScenicView = (numVisible: Int, blockedByIndex: Int)
