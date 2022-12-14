@@ -65,7 +65,7 @@ private func createNodes(node: Node, commands: [Command]) {
   }
 }
 
-enum Command {
+private enum Command {
   case cd(String)
   case ls([String])
   
@@ -81,7 +81,7 @@ enum Command {
   }
 }
 
-class Node: Hashable, CustomDebugStringConvertible {
+private class Node: Hashable, CustomDebugStringConvertible {
   enum Kind {
     case directory(Set<Node>)
     case file(UInt)
@@ -164,7 +164,7 @@ class Node: Hashable, CustomDebugStringConvertible {
   }
 }
 
-extension Node {
+private extension Node {
   var depth: Int {
     var depth = 0
     var node: Node? = self

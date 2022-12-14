@@ -7,7 +7,7 @@ let day10 = Day { part, input in
     }
 }
 
-struct Cycle {
+private struct Cycle {
   var totalBefore: Int
   var valueToAdd: Int
   
@@ -45,20 +45,18 @@ private func part1(_ input: String) -> Int {
     .reduce(0, +)
 }
 
-private func part2(_ input: String) -> Int {
+private func part2(_ input: String) -> String {
   let screen = zip(parseCycles(input), 0 ..< 240).map { cycle, crtIndex in
     cycle.isLit(at: crtIndex) ? "#" : "."
   }
   .chunked(into: 40)
   .map { $0.joined() }
   .joined(separator: "\n")
-  
-  print(screen)
-  
-  return 0
+
+  return "\n" + screen
 }
 
-extension Array where Element == Cycle {
+private extension Array where Element == Cycle {
   var interestingSignalStrengths: [Int] {
     stride(from: 19, to: Swift.min(220, self.count - 1), by: 40).map { cycleNum in
       (cycleNum + 1) * self[cycleNum].totalBefore
@@ -66,7 +64,7 @@ extension Array where Element == Cycle {
   }
 }
  
-extension Array {
+private extension Array {
   func chunked(into size: Int) -> [[Element]] {
     return stride(from: 0, to: count, by: size).map {
       Array(self[$0 ..< Swift.min($0 + size, count)])

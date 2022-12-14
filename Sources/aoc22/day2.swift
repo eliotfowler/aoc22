@@ -1,12 +1,12 @@
 import Foundation
 
-enum NeededResult { 
+private enum NeededResult {
     case win
     case loss
     case draw
 }
 
-enum Material: Int { 
+private enum Material: Int {
     case rock = 1
     case paper = 2
     case scissors = 3
@@ -36,7 +36,7 @@ enum Material: Int {
     }
 }
 
-struct RoundPart1 {
+private struct RoundPart1 {
     let opponentChoice: Material
     let myChoice: Material
 
@@ -64,7 +64,7 @@ struct RoundPart1 {
     }
 }
 
-struct RoundPart2 {
+private struct RoundPart2 {
     let opponentChoice: Material
     let result: NeededResult
     let myChoice: Material

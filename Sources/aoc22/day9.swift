@@ -7,7 +7,7 @@ let day9 = Day { part, input in
     }
 }
 
-struct Instruction {
+private struct Instruction {
   enum Direction: String {
     case up = "U"
     case down = "D"
@@ -19,7 +19,7 @@ struct Instruction {
   let steps: Int
 }
 
-struct Location: Hashable {
+private struct Location: Hashable {
   var x = 0
   var y = 0
   
@@ -44,7 +44,7 @@ struct Location: Hashable {
   }
 }
 
-struct Step: Hashable {
+private struct Step: Hashable {
   var knots: [Location]
   var head: Location { knots[0] }
   var tail: Location { knots[knots.count - 1] }
@@ -83,7 +83,7 @@ struct Step: Hashable {
   }
 }
 
-extension Step {
+private extension Step {
   init(head: Location = .init(), tail: Location = .init()) {
     self.knots = [head, tail]
   }

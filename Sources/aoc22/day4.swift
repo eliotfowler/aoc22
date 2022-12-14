@@ -33,7 +33,7 @@ private func part2(_ input: String) -> Int {
     .reduce(0) { $0 + ($1 ? 1 : 0) }
 }
 
-extension ClosedRange<Int> {
+private extension ClosedRange<Int> {
   init(rangeString: String) {
     let rangeParts = rangeString.components(separatedBy: "-")
       .compactMap(Int.init)

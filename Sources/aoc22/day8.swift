@@ -77,7 +77,7 @@ private func part2(_ input: String) -> Int {
   .reduce(0, max)
 }
 
-typealias ScenicView = (numVisible: Int, blockedByIndex: Int)
+private typealias ScenicView = (numVisible: Int, blockedByIndex: Int)
 private func scanForScenicViews(rows: [[Int]], indexes: [(Int, Int)]) -> [[ScenicView]] {
   var scenicViews: [[ScenicView]] = Array(repeating: Array(repeating: (0, 0), count: rows.count), count: rows.count)
   for (index, (rowIndex, columnIndex)) in indexes.enumerated() {
@@ -99,7 +99,7 @@ private func scanForScenicViews(rows: [[Int]], indexes: [(Int, Int)]) -> [[Sceni
   return scenicViews
 }
 
-extension Array where Element == Array<Int> {
+private extension Array where Element == Array<Int> {
   func isElementOnEdge(row: Int, column: Int) -> Bool {
     row == 0 || column == 0 || row == self.count - 1 || column == self[0].count - 1
   }
