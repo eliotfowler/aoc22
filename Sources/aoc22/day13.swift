@@ -34,7 +34,7 @@ private func part2(_ input: String) -> Int {
   let divider2 = Packet.list([.list([.value(6)])])
   let allPackets = (parsePacketPairs(input).flatMap { $0 } + [divider1, divider2])
     .sorted()
-    
+  
   let decoder1 = (allPackets.firstIndex(of: divider1) ?? -1) + 1
   let decoder2 = (allPackets.firstIndex(of: divider2) ?? -1) + 1
   return decoder1 * decoder2
@@ -83,7 +83,7 @@ private func compare(left: Packet, right: Packet) -> ComparisonResult {
   switch (left, right) {
   case let (.value(leftValue), .value(rightValue)):
     return leftValue == rightValue ? .equal :
-      leftValue < rightValue ?
+    leftValue < rightValue ?
       .lessThan : .greaterThan
   case let (.list(leftList), .list(rightList)):
     for (leftPacket, rightPacket) in zip(leftList, rightList) {
@@ -98,7 +98,7 @@ private func compare(left: Packet, right: Packet) -> ComparisonResult {
     }
     
     return leftList.count == rightList.count ? .equal :
-      leftList.count < rightList.count ? .lessThan : .greaterThan
+    leftList.count < rightList.count ? .lessThan : .greaterThan
     
   case (.list, .value):
     return compare(left: left, right: .list([right]))

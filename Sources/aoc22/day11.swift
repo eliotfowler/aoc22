@@ -1,10 +1,10 @@
 import Foundation
 
 let day11 = Day { part, input in
-    switch part {
-        case .one: return part1(input)
-        case .two: return part2(input)
-    }
+  switch part {
+  case .one: return part1(input)
+  case .two: return part2(input)
+  }
 }
 
 typealias Value = Int
@@ -37,7 +37,7 @@ private enum Operation: Equatable {
       }
     }
   }
-
+  
   case add(Part, Part)
   case multiply(Part, Part)
   
@@ -95,7 +95,7 @@ private func completeRound(_ monkeys: [Monkey], numInspections: ([Int]), shouldD
       numInspections[i] += 1
       let item = monkeys[i].itemWorries.removeFirst()
       let newWorry = monkeys[i].transform.calculate(item)
-//      let newWorryManaged = shouldDivide ? Int(Double(newWorry) / 3.0) : newWorry
+      //      let newWorryManaged = shouldDivide ? Int(Double(newWorry) / 3.0) : newWorry
       let newMonkey = monkeys[i].monkeyToThrow(newWorry)
       monkeys[newMonkey].itemWorries.append(newWorry)
     }

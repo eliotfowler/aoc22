@@ -1,10 +1,10 @@
 import Foundation
 
 let day7 = Day { part, input in
-    switch part {
-        case .one: return part1(input)
-        case .two: return part2(input)
-    }
+  switch part {
+  case .one: return part1(input)
+  case .two: return part2(input)
+  }
 }
 
 private func part1(_ input: String) -> UInt {
@@ -158,7 +158,7 @@ private class Node: Hashable, CustomDebugStringConvertible {
   func hash(into hasher: inout Hasher) {
     hasher.combine(path)
   }
-
+  
   static func == (lhs: Node, rhs: Node) -> Bool {
     lhs.path == rhs.path
   }

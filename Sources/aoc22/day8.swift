@@ -1,10 +1,10 @@
 import Foundation
 
 let day8 = Day { part, input in
-    switch part {
-        case .one: return part1(input)
-        case .two: return part2(input)
-    }
+  switch part {
+  case .one: return part1(input)
+  case .two: return part2(input)
+  }
 }
 
 private func part1(_ input: String) -> Int {
@@ -71,7 +71,7 @@ private func part2(_ input: String) -> Int {
   return rows.enumerated().flatMap { rowIndex, row in
     row.enumerated().map { columnIndex, _ in
       lookingLeft[rowIndex][columnIndex].numVisible * lookingRight[rowIndex][columnIndex].numVisible *
-        lookingUp[rowIndex][columnIndex].numVisible * lookingDown[rowIndex][columnIndex].numVisible
+      lookingUp[rowIndex][columnIndex].numVisible * lookingDown[rowIndex][columnIndex].numVisible
     }
   }
   .reduce(0, max)

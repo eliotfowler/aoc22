@@ -1,10 +1,10 @@
 import Foundation
 
 let day10 = Day { part, input in
-    switch part {
-        case .one: return part1(input)
-        case .two: return part2(input)
-    }
+  switch part {
+  case .one: return part1(input)
+  case .two: return part2(input)
+  }
 }
 
 private struct Cycle {
@@ -49,10 +49,10 @@ private func part2(_ input: String) -> String {
   let screen = zip(parseCycles(input), 0 ..< 240).map { cycle, crtIndex in
     cycle.isLit(at: crtIndex) ? "#" : "."
   }
-  .chunked(into: 40)
-  .map { $0.joined() }
-  .joined(separator: "\n")
-
+    .chunked(into: 40)
+    .map { $0.joined() }
+    .joined(separator: "\n")
+  
   return "\n" + screen
 }
 
@@ -63,7 +63,7 @@ private extension Array where Element == Cycle {
     }
   }
 }
- 
+
 private extension Array {
   func chunked(into size: Int) -> [[Element]] {
     return stride(from: 0, to: count, by: size).map {

@@ -29,7 +29,7 @@ private func createGraph(_ input: String) -> Graph {
     .map { rowIndex, row in
       let rowCount = row.count
       return row.enumerated().map { columnIndex, letter in
-          Node(String(letter), rowIndex * rowCount + columnIndex)
+        Node(String(letter), rowIndex * rowCount + columnIndex)
       }
     }
   
@@ -123,7 +123,7 @@ private extension Graph {
           (visited[nextNode] ?? Int.max) > distance && !queue.contains(where: { $0.0 == node })
         }
         .map { ($0, distance + 1, path + [node]) }
-
+      
       queue.append(contentsOf: nextNodes)
     }
     

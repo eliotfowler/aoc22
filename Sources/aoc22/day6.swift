@@ -1,10 +1,10 @@
 import Foundation
 
 let day6 = Day { part, input in
-    switch part {
-        case .one: return part1(input)
-        case .two: return part2(input)
-    }
+  switch part {
+  case .one: return part1(input)
+  case .two: return part2(input)
+  }
 }
 
 private func part1(_ input: String) -> Int {
