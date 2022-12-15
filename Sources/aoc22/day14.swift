@@ -152,6 +152,12 @@ private func nextSandSpot(grid: [[GridElement]], proposed: Point, hasFloor: Bool
 // MARK: - Extensions
 
 private extension Point {
+  init(_ input: String) {
+    let parts = input.components(separatedBy: ",")
+    self.x = Int(parts[0])!
+    self.y = Int(parts[1])!
+  }
+  
   func safeDown(_ grid: [[GridElement]]) -> Point? {
     guard self.y < grid.count - 1 else { return nil }
     return .init(x: self.x, y: self.y + 1)
